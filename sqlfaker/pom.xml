@@ -18,6 +18,13 @@
     <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
 
+  <distributionManagement>
+    <repository>
+    <id>josh-maven-repo-snapshots</id>
+    <name>Joshs Maven Repo</name>
+    <url>http://localhost:2002/snapshots</url>
+    </repository>
+  </distributionManagement>
   <dependencies>
 
     <dependency>

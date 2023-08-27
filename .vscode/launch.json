@@ -10,7 +10,7 @@
             "request": "launch",
             "mainClass": "org.boshed.SQLFaker",
             "projectName": "sqlfaker",
-            "args": "500000"
+            "args": "2000"
         }
     ]
 }
