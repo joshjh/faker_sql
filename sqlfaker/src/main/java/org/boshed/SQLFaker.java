@@ -5,12 +5,6 @@ import org.boshed.Fakes.*;
 
 import com.github.javafaker.Faker;
 
-
-
-/**
- * Hello world!
- *
- */
 public class SQLFaker
 {
    
@@ -19,28 +13,28 @@ public class SQLFaker
         int fakeCount = Integer.valueOf(args[0]);
         FakePerson[] fakePeople = new FakePerson[fakeCount+1];
         FakeCompany[] fakeCompanies = new FakeCompany[fakeCount+1];
+        FakeDog[] fakeDogs = new FakeDog[fakeCount+1];
+        FakeTeam[] fakeTeams = new FakeTeam[fakeCount+1];
         Faker Faker = new Faker(new Locale("en-GB"));
         SQLEngine SQLEngine = new SQLEngine();
 
         Random randGen = new Random();
         for (int i=0; i < fakePeople.length; i++) {
             fakePeople[i] = new FakePerson(Faker, randGen);
-            // System.out.println(fakePeople[i].SQLInsertString());
-            // System.out.println(fakePeople[i].SQLInsertPreparedStatement(SQLEngine.conn));
-        }
-         for (int i=0; i < fakeCompanies.length; i++) {
             fakeCompanies[i] = new FakeCompany(Faker, randGen);
-            // System.out.println(fakePeople[i].SQLInsertString());
-            // System.out.println(fakeCompanies[i].SQLInsertPreparedStatement(SQLEngine.conn));
+            fakeDogs[i] = new FakeDog(Faker, randGen);
+            fakeTeams[i] = new FakeTeam(Faker, randGen);
         }
        
         // create the tables
-        SQLEngine.prepTable(fakeCompanies[0]);
-        SQLEngine.prepTable(fakePeople[0]);
-
-        for (FakeCompany company:fakeCompanies) {SQLEngine.sqlInsert(company);}
-        for (FakePerson person:fakePeople) {SQLEngine.sqlInsert(person);}
-        
+        // SQLEngine.prepTable(fakeCompanies[0]);
+        // SQLEngine.prepTable(fakePeople[0]);
+        // SQLEngine.prepTable(fakeDogs[0]);
+        SQLEngine.prepTable(fakeTeams[0]);
+       // for (FakeCompany company:fakeCompanies) {SQLEngine.sqlInsert(company);}
+        //for (FakePerson person:fakePeople) {SQLEngine.sqlInsert(person);}
+       // for (FakeDog dog:fakeDogs) {SQLEngine.sqlInsert(dog);}
+       for (FakeTeam fakeTeam:fakeTeams) {SQLEngine.sqlInsert(fakeTeam);}
         }
 }
 

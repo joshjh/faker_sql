@@ -4,7 +4,7 @@ import org.boshed.Fakes.Fields;
 import java.sql.*;
 
 public class SQLEngine {
-    static private final String DB_URL = "jdbc:postgresql://localhost:32770/postgres";
+    static private final String DB_URL = "jdbc:postgresql://orzo:5432/postgres";
     static private final String USER = "postgres";
     static private final String PASS = "Tunnel27";
     Statement stmt;
@@ -52,12 +52,15 @@ public class SQLEngine {
      * This function cannot use prepared statements due to the SQL injection vulnerability.
      * @param object an object of T extends Fakes and Implements Fields
      */ 
-    public <T extends Fakes & Fields> void prepTable(T object) {
+    public <T extends Fakes & Fields>void prepTable(T object) {
     System.out.println("Building Fake OBJECT TABLE\n");
     String SQLString = String.format("CREATE TABLE %s (id SERIAL PRIMARY KEY NOT NULL, ", object.getTableName());
     Object[] fields = object.listFields();
     for (int x=0; x< fields.length; x++) {
         if (fields[x].toString() == "dob") {SQLString += String.format("%s DATE, ", fields[x].toString());}
+
+        else if (fields[x].toString() == "dogtag") {SQLString += String.format("%s INTEGER, ", fields[x].toString());}
+        else if (fields[x].toString() == "employeenumber") {SQLString += String.format("%s INTEGER, ", fields[x].toString());}
         else {
         SQLString += String.format("%s VARCHAR, ", object.listFields()[x]);
         }
@@ -81,6 +84,6 @@ public class SQLEngine {
 
    
 
-
+ 
 
 
